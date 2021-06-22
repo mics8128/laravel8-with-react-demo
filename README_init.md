@@ -19,6 +19,24 @@ cd example-app
 ./vendor/bin/sail npm run dev
 ```
 
+## install Eslint & setup
+```
+./vendor/bin/sail npm install --include=dev eslint
+./vendor/bin/sail node ./node_modules/eslint/bin/eslint.js --init
+```
+
+## Eslint auto fix
+
+put following into `.vscode/settings.json`
+```
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "eslint.validate": ["javascript"]
+}
+```
+
 ## memo for proxies
 ```
 ./vendor/bin/sail artisan vendor:publish --provider="Fideloper\Proxy\TrustedProxyServiceProvider"
