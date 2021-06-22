@@ -1,33 +1,34 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button'
+import Guest from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import React, { useEffect } from 'react'
+import ValidationErrors from '@/Components/ValidationErrors'
+import { useForm } from '@inertiajs/inertia-react'
+import route from 'ziggy'
 
-export default function ConfirmPassword() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        password: '',
-    });
+export default function ConfirmPassword () {
+  const { data, setData, post, processing, errors, reset } = useForm({
+    password: ''
+  })
 
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
+  useEffect(() => {
+    return () => {
+      reset('password')
+    }
+  }, [])
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+  const onHandleChange = (event) => {
+    setData(event.target.name, event.target.value)
+  }
 
-    const submit = (e) => {
-        e.preventDefault();
+  const submit = (e) => {
+    e.preventDefault()
 
-        post(route('password.confirm'));
-    };
+    post(route('password.confirm'))
+  }
 
-    return (
+  return (
         <Guest>
             <div className="mb-4 text-sm text-gray-600">
                 This is a secure area of the application. Please confirm your password before continuing.
@@ -56,5 +57,5 @@ export default function ConfirmPassword() {
                 </div>
             </form>
         </Guest>
-    );
+  )
 }

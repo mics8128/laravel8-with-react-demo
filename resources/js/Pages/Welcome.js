@@ -1,15 +1,18 @@
-import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import React from 'react'
+import { InertiaLink } from '@inertiajs/inertia-react'
+import route from 'ziggy'
 
-export default function Welcome(props) {
-    return (
+export default function Welcome (props) {
+  return (
         <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div className="fixed top-0 right-0 px-6 py-4 sm:block">
-                {props.auth.user ? (
+                {props.auth.user
+                  ? (
                     <InertiaLink href="/dashboard" className="text-sm text-gray-700 underline">
                         Dashboard
                     </InertiaLink>
-                ) : (
+                    )
+                  : (
                     <>
                         <InertiaLink href={route('login')} className="text-sm text-gray-700 underline">
                             Log in
@@ -19,7 +22,7 @@ export default function Welcome(props) {
                             Register
                         </InertiaLink>
                     </>
-                )}
+                    )}
             </div>
 
             <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -156,7 +159,7 @@ export default function Welcome(props) {
 
                             <div className="ml-12">
                                 <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as{' '}
+                                    Laravel&apos;s robust library of first-party tools and libraries, such as{' '}
                                     <a href="https://forge.laravel.com" className="underline">
                                         Forge
                                     </a>
@@ -247,5 +250,5 @@ export default function Welcome(props) {
                 </div>
             </div>
         </div>
-    );
+  )
 }

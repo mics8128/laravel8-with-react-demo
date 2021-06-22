@@ -1,26 +1,27 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import React from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button'
+import Guest from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import React from 'react'
+import ValidationErrors from '@/Components/ValidationErrors'
+import { useForm } from '@inertiajs/inertia-react'
+import route from 'ziggy'
 
-export default function ForgotPassword({ status }) {
-    const { data, setData, post, processing, errors } = useForm({
-        email: '',
-    });
+export default function ForgotPassword ({ status }) {
+  const { data, setData, post, processing, errors } = useForm({
+    email: ''
+  })
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+  const onHandleChange = (event) => {
+    setData(event.target.name, event.target.value)
+  }
 
-    const submit = (e) => {
-        e.preventDefault();
+  const submit = (e) => {
+    e.preventDefault()
 
-        post(route('password.email'));
-    };
+    post(route('password.email'))
+  }
 
-    return (
+  return (
         <Guest>
             <div className="mb-4 text-sm text-gray-500 leading-normal">
                 Forgot your password? No problem. Just let us know your email address and we will email you a password
@@ -48,5 +49,5 @@ export default function ForgotPassword({ status }) {
                 </div>
             </form>
         </Guest>
-    );
+  )
 }

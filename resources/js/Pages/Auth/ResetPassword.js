@@ -1,36 +1,37 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button'
+import Guest from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import React, { useEffect } from 'react'
+import ValidationErrors from '@/Components/ValidationErrors'
+import { useForm } from '@inertiajs/inertia-react'
+import route from 'ziggy'
 
-export default function ResetPassword({ token, email }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        token: token,
-        email: email,
-        password: '',
-        password_confirmation: '',
-    });
+export default function ResetPassword ({ token, email }) {
+  const { data, setData, post, processing, errors, reset } = useForm({
+    token: token,
+    email: email,
+    password: '',
+    password_confirmation: ''
+  })
 
-    useEffect(() => {
-        return () => {
-            reset('password', 'password_confirmation');
-        };
-    }, []);
+  useEffect(() => {
+    return () => {
+      reset('password', 'password_confirmation')
+    }
+  }, [])
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.value);
-    };
+  const onHandleChange = (event) => {
+    setData(event.target.name, event.target.value)
+  }
 
-    const submit = (e) => {
-        e.preventDefault();
+  const submit = (e) => {
+    e.preventDefault()
 
-        post(route('password.update'));
-    };
+    post(route('password.update'))
+  }
 
-    return (
+  return (
         <Guest>
             <ValidationErrors errors={errors} />
 
@@ -82,5 +83,5 @@ export default function ResetPassword({ token, email }) {
                 </div>
             </form>
         </Guest>
-    );
+  )
 }

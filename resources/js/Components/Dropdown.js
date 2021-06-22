@@ -1,53 +1,53 @@
-import React, { useState, useContext } from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import { Transition } from '@headlessui/react';
+import React, { useState, useContext } from 'react'
+import { InertiaLink } from '@inertiajs/inertia-react'
+import { Transition } from '@headlessui/react'
 
-const DropDownContext = React.createContext();
+const DropDownContext = React.createContext()
 
 const Dropdown = ({ children }) => {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-    const toggleOpen = () => {
-        setOpen((previousState) => !previousState);
-    };
+  const toggleOpen = () => {
+    setOpen((previousState) => !previousState)
+  }
 
-    return (
+  return (
         <DropDownContext.Provider value={{ open, setOpen, toggleOpen }}>
             <div className="relative">{children}</div>
         </DropDownContext.Provider>
-    );
-};
+  )
+}
 
 const Trigger = ({ children }) => {
-    const { open, setOpen, toggleOpen } = useContext(DropDownContext);
+  const { open, setOpen, toggleOpen } = useContext(DropDownContext)
 
-    return (
+  return (
         <>
             <div onClick={toggleOpen}>{children}</div>
 
             {open && <div className="fixed inset-0 z-40" onClick={() => setOpen(false)}></div>}
         </>
-    );
-};
+  )
+}
 
 const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-white', children }) => {
-    const { open, setOpen } = useContext(DropDownContext);
+  const { open, setOpen } = useContext(DropDownContext)
 
-    let alignmentClasses = 'origin-top';
+  let alignmentClasses = 'origin-top'
 
-    if (align === 'left') {
-        alignmentClasses = 'origin-top-left left-0';
-    } else if (align === 'right') {
-        alignmentClasses = 'origin-top-right right-0';
-    }
+  if (align === 'left') {
+    alignmentClasses = 'origin-top-left left-0'
+  } else if (align === 'right') {
+    alignmentClasses = 'origin-top-right right-0'
+  }
 
-    let widthClasses = '';
+  let widthClasses = ''
 
-    if (width === '48') {
-        widthClasses = 'w-48';
-    }
+  if (width === '48') {
+    widthClasses = 'w-48'
+  }
 
-    return (
+  return (
         <>
             <Transition
                 show={open}
@@ -63,18 +63,18 @@ const Content = ({ align = 'right', width = '48', contentClasses = 'py-1 bg-whit
                         className={`absolute z-50 mt-2 rounded-md shadow-lg ${alignmentClasses} ${widthClasses}`}
                         onClick={() => setOpen(false)}
                     >
-                        <div className={`rounded-md ring-1 ring-black ring-opacity-5 ` + contentClasses}>
+                        <div className={'rounded-md ring-1 ring-black ring-opacity-5 ' + contentClasses}>
                             {children}
                         </div>
                     </div>
                 )}
             </Transition>
         </>
-    );
-};
+  )
+}
 
 const Link = ({ href, method = 'post', as = 'a', children }) => {
-    return (
+  return (
         <InertiaLink
             href={href}
             method={method}
@@ -83,11 +83,11 @@ const Link = ({ href, method = 'post', as = 'a', children }) => {
         >
             {children}
         </InertiaLink>
-    );
-};
+  )
+}
 
-Dropdown.Trigger = Trigger;
-Dropdown.Content = Content;
-Dropdown.Link = Link;
+Dropdown.Trigger = Trigger
+Dropdown.Content = Content
+Dropdown.Link = Link
 
-export default Dropdown;
+export default Dropdown

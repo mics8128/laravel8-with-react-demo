@@ -1,37 +1,37 @@
-import Button from '@/Components/Button';
-import Checkbox from '@/Components/Checkbox';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { InertiaLink } from '@inertiajs/inertia-react';
-import { useForm } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button'
+import Checkbox from '@/Components/Checkbox'
+import Guest from '@/Layouts/Guest'
+import Input from '@/Components/Input'
+import Label from '@/Components/Label'
+import React, { useEffect } from 'react'
+import ValidationErrors from '@/Components/ValidationErrors'
+import { InertiaLink, useForm } from '@inertiajs/inertia-react'
+import route from 'ziggy'
 
-export default function Login({ status, canResetPassword }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
-        password: '',
-        remember: '',
-    });
+export default function Login ({ status, canResetPassword }) {
+  const { data, setData, post, processing, errors, reset } = useForm({
+    email: '',
+    password: '',
+    remember: ''
+  })
 
-    useEffect(() => {
-        return () => {
-            reset('password');
-        };
-    }, []);
+  useEffect(() => {
+    return () => {
+      reset('password')
+    }
+  }, [])
 
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
-    };
+  const onHandleChange = (event) => {
+    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value)
+  }
 
-    const submit = (e) => {
-        e.preventDefault();
+  const submit = (e) => {
+    e.preventDefault()
 
-        post(route('login'));
-    };
+    post(route('login'))
+  }
 
-    return (
+  return (
         <Guest>
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 
@@ -89,5 +89,5 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             </form>
         </Guest>
-    );
+  )
 }
