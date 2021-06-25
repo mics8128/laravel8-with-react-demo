@@ -6,6 +6,7 @@ tasks:
       ./vendor/bin/sail npm install
     command: ./vendor/bin/sail up -d
   - name: NPM watch
+    init: gp sync-await bundle
     command: ./vendor/bin/sail npm watch
   
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
