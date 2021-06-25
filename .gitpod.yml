@@ -1,11 +1,10 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - name: sail up
-    init: |
-      composer install
-      ./vendor/bin/sail build
-      ./vendor/bin/sail npm install
-      ./vendor/bin/sail artisan migrate
+    init: >
+      docker run --rm -u "$(id -u):$(id -g)" -v $(pwd):/opt -w /opt laravelsail/php80-composer:latest composer install --ignore-platform-reqs  &&
+      ./vendor/bin/sail build &&
+      ./vendor/bin/sail npm install &&
       gp sync-done installs
     command: ./vendor/bin/sail up
   - name: npm watch
