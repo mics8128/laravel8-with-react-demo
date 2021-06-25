@@ -1,12 +1,14 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - name: Prebuild & Sail up
+  - name: sail up
     init: |
       composer install
+      ./vendor/bin/sail build
       ./vendor/bin/sail npm install
-    command: ./vendor/bin/sail up -d
-  - name: NPM watch
-    init: gp sync-await bundle
+      gp sync-done installs
+    command: ./vendor/bin/sail up
+  - name: npm watch
+    init: gp sync-await installs
     command: ./vendor/bin/sail npm watch
   
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
