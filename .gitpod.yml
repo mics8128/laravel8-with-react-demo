@@ -1,0 +1,25 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: Sail up
+    init: ./vendor/bin/sail composer install
+    command: ./vendor/bin/sail up -d
+  - name: NPM watch
+    init: ./vendor/bin/sail npm install
+    command: ./vendor/bin/sail npm watch
+  
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 8080
+    onOpen: notify
+  - port: 1025
+    onOpen: ignore
+  - port: 3000
+    onOpen: ignore
+  - port: 3306
+    onOpen: ignore
+  - port: 6379
+    onOpen: ignore
+  - port: 7700
+    onOpen: ignore
+  - port: 8025
+    onOpen: ignore
