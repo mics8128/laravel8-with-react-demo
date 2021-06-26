@@ -4,14 +4,16 @@ tasks:
     init: >
       APP_PORT=8080 && 
       composer install --ignore-platform-reqs &&
-      ./vendor/bin/sail build &&
       ./vendor/bin/sail up -d &&
-      ./vendor/bin/sail npm install &&
-      ./vendor/bin/sail down &&
-      gp sync-done installs
+      gp sync-done sail-up &&
+      gp sync-await npm-installed &&
+      ./vendor/bin/sail down
     command: APP_PORT=8080 ./vendor/bin/sail up
   - name: npm watch
-    init: gp sync-await installs
+    init: >
+      gp sync-await sail-up &&
+      ./vendor/bin/sail npm install &&
+      gp sync-done npm-installed
     command: ./vendor/bin/sail npm run watch
   
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
